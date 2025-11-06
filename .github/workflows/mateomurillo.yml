@@ -1,4 +1,4 @@
-name: Build and Push Docker Image for Mateo Murillo
+name: Build and Push Docker Image to GHCR
 
 on:
   push:
@@ -17,14 +17,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Docker login to GHCR
+      - name: Log in to GitHub Container Registry
         run: |
           echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/flask-hola-mundo:1.0.0 .
+          docker build -t ghcr.io/${{ secrets.GHCR_USERNAME }}/flask-hola-mundo:latest .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/flask-hola-mundo:1.0.0
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/flask-hola-mundo:latest
