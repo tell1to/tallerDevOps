@@ -1,4 +1,4 @@
-name: Build and Push Docker Image (manual Docker commands)
+name: Build and Push Docker Image for Mateo Murillo
 
 on:
   push:
